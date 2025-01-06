@@ -20,7 +20,7 @@
       /* font-family: Arial, sans-serif; */
       background-color: #0C1418;
       color: #fff;
-      height: 300vh; /* Makes the page scrollable */
+      /* height: 300vh; Makes the page scrollable */
       overflow-x: hidden;
     }
     /* Partagali top container with image */
@@ -207,8 +207,9 @@
     gap: 50px;
     margin: 0 auto;
     width: 60%;
-    margin-top: -140%;
-    margin-left: 34%;
+    position: absolute;
+    top: 186%;
+    left: 34%;
 }
 
 /* Fade-In Active State */
@@ -222,8 +223,9 @@
     gap: 50px;
     margin: 0 auto;
     width: 60%;
-    margin-top: 12%;
-    margin-left: 34%;
+    position: absolute;
+    top: 351%;
+    left: 34%;
   }
 
 
@@ -397,22 +399,34 @@
 /* Active State */
 .second-timeline-section.active {
   opacity: 1;
+  transform: translateY(0);
   visibility: visible;
-  transform: translate(0);
-  width: 60%;
-  padding-left: 30px;
-  /* top: -45%; */
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin: 0 auto;
+    width: 60%;
+  position: absolute;
+  top: 245%;
+  left: 1%;
 }
 
 
 /* Active State */
 .fourth-timeline-section.active {
   opacity: 1;
+  transform: translateY(0);
   visibility: visible;
-  transform: translate(0, 0);
-  width: 57%;
-  padding-left: 30px;
-  top: -4%;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin: 0 auto;
+    width: 60%;
+  position: absolute;
+  top: 411%;
+  left: 1%;
 }
 
 .second-timeline-section .timeline-content,
@@ -529,6 +543,7 @@ padding-left: 45px;
 
 .hero-container {
         padding: 6rem 8rem;
+        margin: 0; /* Remove extra margin if any */
         min-height: 100vh;
         min-width: 100vw; /* Ensures the hero section spans the full width of the viewport */
         position: relative;
@@ -973,64 +988,62 @@ padding-left: 45px;
 </section>
 
 
+
 <!-- Slider     -->
 <div class="page-button">
   <button>Skip to Main Page</button>
 </div>
   
-  <div class="part-slidercontainer">
-    <div class="part-horizontal-slider">
+<div class="part-slidercontainer">
+  <div class="part-horizontal-slider">
 
-      <div class="hero-container">
-        <div class="hero-content-section">
-            <p class="subtitle">CHARTING THE SHRI SAMSTHAN GOKARN<br/>PARTAGALI JEEVOTTAM MATH STORY</p>
-            <h1 class="main-title">From Harmony to Heritage...</h1>
-            <p class="hero-slider-description">
-                Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker.
-            </p>
-        </div>
-        
-        <div class="explore-section">
-            <div class="explore-circle">
-                <span class="explore-text">Explore ></span>
-            </div>
-            <div class="hero-slier-timeline">
-                <div class="timeline-dot active"></div>
-                <div class="timeline-line"></div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-                <div class="timeline-dot"></div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="second-slider">
-      
-      <h1>CHARTING <br>
-        Shri Samsthan
-         Gokarn Partagali</h1>
-         <p>Jeevottam Math</p>
-    </div>
-
-    <div class="third-slider">
-      <div class="third-slider-year">1518</div>
-      <div class="third-slider-content">
-         <img src="slider assets/FRAME 1.gif" alt="Depiction of Spirituality" /> 
-        <p class="third-slider-caption">Determining what level of hiker you are can be an important tool when planning future hikes.</p>
+    <div class="hero-container">
+      <div class="hero-content-section">
+          <p class="subtitle">CHARTING THE SHRI SAMSTHAN GOKARN<br/>PARTAGALI JEEVOTTAM MATH STORY</p>
+          <h1 class="main-title">From Harmony to Heritage...</h1>
+          <p class="hero-slider-description">
+              Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker.
+          </p>
       </div>
-    </div>
-    
-      <div class="slide" style="background-color: #ffd6a5;">Slide 2</div>
-      <div class="slide" style="background-color: #fdffb6;">Slide 3</div>
-      <div class="slide" style="background-color: #caffbf;">Slide 4</div>
-      <div class="slide" style="background-color: #9bf6ff;">Slide 5</div>
-    </div>
-
-   
-
+      
+      <div class="explore-section">
+          <div class="explore-circle">
+              <span class="explore-text">Explore ></span>
+          </div>
+          <div class="hero-slier-timeline">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-line"></div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-line"></div>
+              <div class="timeline-dot"></div>
+          </div>
+      </div>
   </div>
 
+  <div class="second-slider">
+        
+    <h1>CHARTING <br>
+      Shri Samsthan
+       Gokarn Partagali</h1>
+       <p>Jeevottam Math</p>
+  </div>
+
+  <div class="third-slider">
+    <div class="third-slider-year">1518</div>
+    <div class="third-slider-content">
+       <img src="slider assets/FRAME 1.gif" alt="Depiction of Spirituality" /> 
+      <p class="third-slider-caption">Determining what level of hiker you are can be an important tool when planning future hikes.</p>
+    </div>
+  </div>
+  
+    <div class="slide" style="background-color: #ffd6a5;">Slide 2</div>
+    <div class="slide" style="background-color: #fdffb6;">Slide 3</div>
+    <div class="slide" style="background-color: #caffbf;">Slide 4</div>
+    <div class="slide" style="background-color: #9bf6ff;">Slide 5</div>
+  </div>
+
+
+</div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -1179,51 +1192,37 @@ padding-left: 45px;
   })();
 </script>
     
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const timelineSection = document.querySelector('.timeline-section');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          timelineSection.classList.add('active'); // Add active class
-        }
-      });
-    }, {
-      threshold: 0.2, // Trigger when 10% of the section is visible
-    });
-
-    observer.observe(timelineSection);
-  });
-</script>
 
 <!--       
 Slider -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
-
-const slider = document.querySelector('.part-horizontal-slider');
-const slides = document.querySelectorAll('.slide');
-const totalWidth = slides.length * window.innerWidth;
-
-// Set up ScrollTrigger
-gsap.to(slider, {
-x: () => -(totalWidth - window.innerWidth), // Move horizontally based on total width
-ease: 'none',
-scrollTrigger: {
-trigger: '.part-slidercontainer',
-start: 'top top',
-end: () => `+=${totalWidth}`,
-scrub: 1, // Smoothness of the scroll
-pin: true, // Pins the container to enable horizontal scrolling
-anticipatePin: 1,
-},
-});
-
-// Recalculate sizes on resize
-window.addEventListener('resize', () => {
-ScrollTrigger.refresh();
-});
+  
+  const slider = document.querySelector('.part-horizontal-slider');
+  const slides = document.querySelectorAll('.slide');
+  const totalWidth = slides.length * window.innerWidth;
+  
+  // Set up ScrollTrigger
+  gsap.to(slider, {
+  x: () => -(totalWidth - window.innerWidth), // Move horizontally based on total width
+  ease: 'none',
+  scrollTrigger: {
+  trigger: '.part-slidercontainer',
+  start: 'center center',
+  end: () => `+=${totalWidth}`,
+  scrub: 1, // Smoothness of the scroll
+  pin: true, // Pins the container to enable horizontal scrolling
+  anticipatePin: 1,
+  },
+  });
+  
+  // Recalculate sizes on resize
+  window.addEventListener('resize', () => {
+  ScrollTrigger.refresh();
+  });
+  
+  </script>
 
 </script>
     </body>
