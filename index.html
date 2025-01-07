@@ -4,741 +4,516 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Partagali Slider with Parallax</title>
+  <link rel="stylesheet" href="styles.css">
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #0C1418;
-      color: white;
-      font-family: 'Inter', sans-serif;
-    }
-  /* Partagali top container with image */
+ body {
+    margin: 0;
+    padding: 0;
+    background-color: #0C1418;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  }
 
-  .partgali-top-container {
-      position: relative;
-      background-image: url('images/Homepage 1.png'); /* Path to your uploaded image */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat; 
-      /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent), url('images/Homepage 1.png'); Optional image with gradient */
-      height: 180vh; /* Full viewport height */
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      z-index: -2;
+/* Partagali top container with image */
+.partgali-top-container {
+    position: relative;
+    background-image: url('images/Homepage 1.png'); /* Path to your uploaded image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent), url('images/Homepage 1.png'); Optional image with gradient */
+    height: 180vh; /* Full viewport height */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: -2;
 
-     
-    }
+   
+  }
 
-    /* Apply a smooth gradient mask to the bottom of the top container */
+  /* Apply a smooth gradient mask to the bottom of the top container */
 .partgali-top-container::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 30px; 
+ background: linear-gradient(to bottom, transparent, #0C1418);
+z-index: 1;
+}
+
+
+  /* Harmony Through Heritage Text */
+  .heritage-heading {
+    font-size: 14px;
+    color: #FBD784;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    letter-spacing: 0.3rem;
+    font-family: 'Chronicle Display', serif;
+  }
+
+  .heritage-heading::before {
+    content: '';
+    display: inline-block;
+    width: 50px;
+    height: 2px;
+    background-color: #FBD784;
+    margin-right: 10px;
+  }
+
+  .content {
+    text-align: left;
+    color: white;
+    width: 50%;
+    z-index: 2;
+    padding: 0 1rem;
+    padding-top: 10%;
+  }
+
+  /* Main Title */
+  .content h1 {
+      font-size: 4rem;
+  font-weight: 500;
+  font-family: 'Chronicle Display', serif;
+  letter-spacing: 0.1rem;
+  margin: 0;
+
+  }
+
+  .content p {
+    margin-top: 1rem;
+  }
+
+  .scroll-down {
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+  }
+
+  .scroll-down::after {
+    content: '↓'; /* Arrow symbol */
+    font-size: 1rem;
+    animation: bounce 2s infinite;
+  }
+
+
+
+
+  .first-bgmap-conatiner{
+background-image: url('images/Basemap image.png');
+background-repeat: no-repeat;
+background-position-y: 20vh;
+
+/* Add a dark gradient overlay at the bottom */
+mask-image: linear-gradient(
+  to bottom, 
+  rgba(11, 19, 23, 0.039) 0%, 
+  rgba(11, 19, 23, 0) 80%, 
+  rgba(11, 19, 23, 0.073) 58%, 
+  rgba(11, 19, 23, 0) 100%
+);
+-webkit-mask-image: linear-gradient(to bottom, 
+rgb(0 0 0 / 100%) 0%, 
+rgb(0 0 0 / 69%) 80%,
+ rgba(0, 0, 0, 0.7) 58%,
+  rgba(0, 0, 0, 0) 100%
+);
+position: relative;
+z-index: 1;
+
+}
+
+.second-bgmap-container{
+background-image: url('images/Basemap image.png');
+background-repeat: no-repeat;
+background-position-y: 25vh;
+}
+
+
+.second-bgmap-container {
+position: relative;
+background-image: url('images/Basemap image.png');
+background-repeat: no-repeat;
+background-size: cover;
+margin-top: -100px; /* Adjust this value to control overlap
+
+/* Add a dark gradient overlay at the top */
+mask-image: linear-gradient(
+  to bottom,  
+
+rgba(0, 0, 0, 0) 0%, 
+rgba(11, 19, 23, 0) 26%, 
+rgba(11, 19, 23, 0) 100%, 
+rgba(11, 19, 23, 0.025) 100%
+);
+-webkit-mask-image: linear-gradient(to bottom,
+ rgb(11 19 23 / 0%) 0%,
+ rgb(11 19 23 / 91%) 26%,
+ rgb(11 19 23 / 84%) 10%, 
+ rgb(11 19 23) 100%
+);
+
+/* Optional: Add a visible overlay for better compatibility*/
+ position: relative;
+z-index: 1;
+} 
+.second-bgmap-container::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(
+  to bottom, 
+  rgba(0, 0, 0, 1) 0%, 
+  rgba(0, 0, 0, 0.7) 20%, 
+  rgba(0, 0, 0, 0) 100%
+);
+z-index: -1;
+}
+
+
+
+  .timeline-container {
+position: relative;
+display: flex;
+margin-top: -10%;
+overflow: hidden;
+/* width: 100%; */
+z-index: 5;
+padding-left: 25px;
+
+}
+.timeline-container::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 30px; 
-   background: linear-gradient(to bottom, transparent, #0C1418);
-  z-index: 1;
-}
-
-
-    /* Harmony Through Heritage Text */
-    .heritage-heading {
-      font-size: 14px;
-      color: #FBD784;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      letter-spacing: 0.3rem;
-      font-family: 'Chronicle Display', serif;
-    }
-
-    .heritage-heading::before {
-      content: '';
-      display: inline-block;
-      width: 50px;
-      height: 2px;
-      background-color: #FBD784;
-      margin-right: 10px;
-    }
-
-    .content {
-      text-align: left;
-      color: white;
-      width: 50%;
-      z-index: 2;
-      padding: 0 1rem;
-      padding-top: 10%;
-    }
-
-    /* Main Title */
-    .content h1 {
-        font-size: 4rem;
-    font-weight: 500;
-    font-family: 'Chronicle Display', serif;
-    letter-spacing: 0.1rem;
-    margin: 0;
-
-    }
-
-    .content p {
-      margin-top: 1rem;
-    }
-
-    .scroll-down {
-      color: white;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      text-decoration: none;
-    }
-
-    .scroll-down::after {
-      content: '↓'; /* Arrow symbol */
-      font-size: 1rem;
-      animation: bounce 2s infinite;
-    }
-
-
-    .partagali-section {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      font-size: 3rem;
-      font-weight: bold;
-      background: linear-gradient(120deg, #1f4037, #99f2c8);
-    }
-
-    .partagali-parallax {
-      position: absolute;
-      font-size: 6rem;
-      color: rgba(255, 255, 255, 0.7);
-      text-shadow: 0 0 10px #ffffff, 0 0 20px #99f2c8;
-    }
-
-    .partagali-slider-container {
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      background: linear-gradient(120deg, #654ea3, #eaafc8);
-    }
-
-    .partagali-horizontal-slider {
-      display: flex;
-      height: 100vh;
-      width: max-content;
-      transform: translateX(0);
-    }
-
-    .partagali-slide {
-      min-width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    .partagali-slide:nth-child(1) {
-      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-    }
-    .partagali-slide:nth-child(2) {
-      background: linear-gradient(120deg, #fbc2eb, #a6c1ee);
-    }
-    .partagali-slide:nth-child(3) {
-      background: linear-gradient(120deg, #ffecd2, #fcb69f);
-    }
-    .partagali-slide:nth-child(4) {
-      background: linear-gradient(120deg, #d4fc79, #96e6a1);
-    }
-    .partagali-slide:nth-child(5) {
-      background: linear-gradient(120deg, #84fab0, #8fd3f4);
-    }
-
-
-
-
-    /* Floating Scroll Down Button */
-    .partagali-scroll-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 10;
-      background-color: #ffffff;
-      color: #0C1418;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      font-size: 1.5rem;
-      cursor: pointer;
-      animation: pulse 2s infinite;
-    }
-
-  
-    .hero-content-wrapper{
-        padding: 6rem 8rem;
-        margin: 0; /* Remove extra margin if any */
-        min-height: 100vh;
-        min-width: 100vw; /* Ensures the hero section spans the full width of the viewport */
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        box-sizing: border-box; /* Includes padding in width/height calculations */
-    }
-    
-    .section-subtitle {
-        color: #D9D9D9;
-        text-transform: uppercase;
-        font-size: 0.875rem;
-        letter-spacing: 0.05em;
-        margin-bottom: 1rem;
-        font-weight: 500;
-    }
-    
-    .section-main-title {
-        font-size: 4rem;
-        font-weight: 500;
-        margin: 0;
-        line-height: 1.2;
-        max-width: 500px;
-    }
-    
-    .section-slider-description{
-        color: #D9D9D9;
-        max-width: 400px;
-        line-height: 1.6;
-        margin-top: 2rem;
-        font-size: 1rem;
-    }
-    
-    .explore-container {
-        position: absolute;
-        right: 8rem;
-        top: 50%;
-        display: flex;
-        align-items: center;
-    }
-    
-    .explore-button {
-        width: 120px;
-        height: 120px;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .explore-text {
-        color: white;
-        text-transform: uppercase;
-        font-size: 0.875rem;
-        letter-spacing: 0.1em;
-    }
-    
-    .hero-slier-timeline {
-        display: flex;
-        align-items: center;
-        margin-left: 2rem;
-    }
-    
-    .timeline-dot {
-        width: 8px;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        margin: 0 0.5rem;
-    }
-    
-    .timeline-dot.active {
-        background-color: white;
-    }
-    
-    .timeline-line {
-        width: 40px;
-        height: 2px;
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .explore-circle:hover {
-        border-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1.05);
-    }
-    
-    /* Slider Styles */
-    .part-slidercontainer {
-        height: 100vh;
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-    }
-    
-    .slider-horizontal-container {
-        display: flex;
-        flex-direction: row;
-        height: 100vh;
-        width: max-content;
-        transform: translateX(0);
-    }
-    
-    .slide {
-        min-width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        font-weight: bold;
-        color: white;
-    }
-
- 
-    .first-bgmap-conatiner{
-  background-image: url('images/Basemap image.png');
-  background-repeat: no-repeat;
-  background-position-y: 20vh;
-
-  /* Add a dark gradient overlay at the bottom */
-  mask-image: linear-gradient(
-    to bottom, 
-    rgba(11, 19, 23, 0) 0%, 
-    rgba(11, 19, 23, 0) 80%, 
-    rgb(11,19,23) 58%, 
-    rgba(11, 19, 23, 0) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 0) 0%, 
-    rgba(0, 0, 0, 0) 80%, 
-    rgba(0, 0, 0, 0.7) 58%, 
-    rgba(0, 0, 0, 0) 100%
-  );
-
-  /* Optional: Add a visible overlay for better compatibility */
-  position: relative;
-  z-index: 1;
- 
-}
-.first-bgmap-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom, 
-    rgb(11,19,23) 0%, 
-    rgb(11,19,23) 80%, 
-    rgb(11,19,23) 100%
-  );
-  z-index: -1;
-}
-.second-bgmap-container{
-  background-image: url('images/Basemap image.png');
-  background-repeat: no-repeat;
-  background-position-y: 25vh;
-}
-
-
-.second-bgmap-container {
-  position: relative;
-  background-image: url('images/Basemap image.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-bottom: 50px;
-  margin-top: -100px; /* Adjust this value to control overlap
-
-  /* Add a dark gradient overlay at the top */
-  mask-image: linear-gradient(
-    to bottom,  
-    /* rgba(0, 0, 0, 0) 0%, 
-    rgba(0, 0, 0, 0.7) 5%, 
-    rgba(0, 0, 0, 1) 20%, 
-    rgba(0, 0, 0, 1) 100% */
-
-  rgba(0, 0, 0, 0) 0%, 
-  rgb(11,19,23) 26%, 
-  rgb(11,19,23) 100%, 
-  rgb(11,19,23) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 0) 0%, 
-    rgb(11,19,23) 26%, 
-    rgb(11,19,23) 10%, 
-    rgb(11,19,23) 100%
-  );
-
-  /* Optional: Add a visible overlay for better compatibility*/
-   position: relative;
-  z-index: 1;
-} 
-.second-bgmap-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 1) 0%, 
-    rgba(0, 0, 0, 0.7) 20%, 
-    rgba(0, 0, 0, 0) 100%
-  );
-  z-index: -1;
-}
- 
-
-
-    .timeline-container {
-  position: relative;
-  display: flex;
-  margin-top: -10%;
-  overflow: hidden;
-  /* width: 100%; */
-  z-index: 5;
-  padding-left: 25px;
-  
-}
-.timeline-container::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 83%;
-    background: linear-gradient(to top, #ae090900, #0C1418);
-    z-index: 3;
+  height: 83%;
+  background: linear-gradient(to top, #ae090900, #0C1418);
+  z-index: 3;
 }
 
 .timeline-svg {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  max-width: 1400px; /* Set a maximum width for large screens */
-  transform: scale(1); /* Scales the SVG to 2x its original size
-  /* transform-origin: left; Ensures scaling happens from the center */ 
-  margin-top: -10%;
-  z-index: 10;
+width: 100%;
+height: auto; /* Maintain aspect ratio */
+max-width: 1400px; /* Set a maximum width for large screens */
+transform: scale(1); /* Scales the SVG to 2x its original size
+/* transform-origin: left; Ensures scaling happens from the center */ 
+margin-top: -10%;
+z-index: 10;
 }
 .duplicate-timeline-svg {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  max-width: 1400px; /* Set a maximum width for large screens */
- 
+width: 100%;
+height: auto; /* Maintain aspect ratio */
+max-width: 1400px; /* Set a maximum width for large screens */
+
 }
 .dotted-timeline-container, .duplicate-dotted-timeline-container{
-  position: relative;
-  display: flex;
-  overflow: hidden; /* Prevent any overflow from breaking the layout */
-  /* width: 100%; */
-  /* background-color: #0C1418; */
-    margin-top: -7%;
-    padding-left: 55px;
+position: relative;
+display: flex;
+overflow: hidden; /* Prevent any overflow from breaking the layout */
+/* width: 100%; */
+/* background-color: #0C1418; */
+  margin-top: -7%;
+  padding-left: 55px;
 
 
 }
 .dotted-timeline-svg{
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  max-width: 1400px;
-  /* padding-left: 60px; */
+width: 100%;
+height: auto; /* Maintain aspect ratio */
+max-width: 1400px;
+/* padding-left: 60px; */
 }
 
-    .grey-path {
-      stroke: rgba(212, 210, 210, 0.875);
-      stroke-width: 3;
-      fill: none;
-      
-    }
-    .dotted-path{
-      stroke: rgba(212, 210, 210, 0.875);
-      stroke-width: 0px;
-      fill: #999999;
-      transform: scale(1)
-     }
+  .grey-path {
+    stroke: rgba(212, 210, 210, 0.875);
+    stroke-width: 3;
+    fill: none;
+    
+  }
+  .dotted-path{
+    stroke: rgba(212, 210, 210, 0.875);
+    stroke-width: 0px;
+    fill: #999999;
+    transform: scale(1)
+   }
 
-    .white-path {
-      stroke: rgb(255, 255, 255);
-      stroke-width: 3;
-      fill: none;
-    }
+  .white-path {
+    stroke: rgb(255, 255, 255);
+    stroke-width: 3;
+    fill: none;
+  }
 
-    /* Timeline Section Styling*/
- .timeline-section, .third-timeline-section {
-  opacity: 0;
-  display: none;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease-out 0.3s, transform 0.4s ease-out 0.3s;
- color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  z-index: 10;
-  position: relative
+  /* Timeline Section Styling*/
+.timeline-section, .third-timeline-section {
+opacity: 0;
+display: none;
+transform: translateY(20px);
+transition: opacity 0.4s ease-out 0.3s, transform 0.4s ease-out 0.3s;
+color: #fff;
+padding: 20px;
+border-radius: 8px;
+z-index: 10;
+position: relative
 }
 
 
 /* Fade-In Active State */
 .timeline-section.active {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  display: flex;
-  transition: opacity 0.4s ease-out 0.3s, transform 0.4s ease-out 0.3s;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    margin: 0 auto;
-    width: 60%;
-  position: absolute;
-  top: 185%;
-  left: 34%;
+opacity: 1;
+transform: translateY(0);
+visibility: visible;
+display: flex;
+transition: opacity 0.4s ease-out 0.3s, transform 0.4s ease-out 0.3s;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin: 0 auto;
+  width: 60%;
+position: absolute;
+top: 185%;
+left: 34%;
 }
 
 /* Fade-In Active State */
 .third-timeline-section.active {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    margin: 0 auto;
-    width: 60%;
-    position: absolute;
-    top: 350%;
-    left: 34%;
-  }
+opacity: 1;
+transform: translateY(0);
+visibility: visible;
+display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin: 0 auto;
+  width: 60%;
+  position: absolute;
+  top: 347%;
+  left: 34%;
+}
 
 
 
 /* Container for Content */
 .timeline-content, .third-timeline-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* margin-top: 70px; */
-  padding-top: 60px;
-  padding-left: 50px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 25px;
+max-width: 1200px;
+margin: 0 auto;
+/* margin-top: 70px; */
+padding-top: 60px;
+padding-left: 50px;
 }
 
 /* Text Section */
 .timeline-text {
-  flex: 1;
-  padding-left: 45px;
-  padding-top: -13px;
+flex: 1;
+padding-left: 45px;
+padding-top: -13px;
 }
 
 .timeline-year {
-  font-size: 9px;
-    color: #B3B3B3;
-    margin-bottom: 0.5rem;
-    font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-left: 31px;
-    margin-top: -45%;
-    font-weight: 600;
+font-size: 9px;
+  color: #B3B3B3;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-left: 31px;
+  margin-top: -45%;
+  font-weight: 600;
 }
 .timeline-year span {
-  font-size: 3rem;
-  color: #ffffff;
-  display: block;
-  /* margin-top: 5px; */
+font-size: 3rem;
+color: #ffffff;
+display: block;
+/* margin-top: 5px; */
 }
 
 .timeline-title {
-  position: relative;
-  color: #FBD784;
-  font-size: 0.7rem;
-  font-weight: bold;
-  letter-spacing: 0.2rem;
-  margin-bottom: 1rem;
+position: relative;
+color: #FBD784;
+font-size: 0.7rem;
+font-weight: bold;
+letter-spacing: 0.2rem;
+margin-bottom: 1rem;
 
 }
 
 .timeline-title::before {
-  content: '';
-  position: absolute;
-  top: 45%; /* Vertically center the line relative to the text */
-  left: -17%; /* Adjust this to control the distance of the line */
-  width: 13%; /* Adjust length of the line */
-  height: 1px; /* Thickness of the line */
-  background-color: #FBD784; /* Match color to title */
-  transform: translateY(-50%); /* Ensure it's perfectly centered */
+content: '';
+position: absolute;
+top: 45%; /* Vertically center the line relative to the text */
+left: -17%; /* Adjust this to control the distance of the line */
+width: 13%; /* Adjust length of the line */
+height: 1px; /* Thickness of the line */
+background-color: #FBD784; /* Match color to title */
+transform: translateY(-50%); /* Ensure it's perfectly centered */
 }
 
 @font-face {
-  font-family: 'Chronicle Display';
-  src: url('/fonts/ChronicleDisplay-Light.woff2') format('woff2'),
-       url('/fonts/ChronicleDisplay-Light.woff') format('woff'),
-       url('/fonts/ChronicleDisplay-Light.ttf') format('truetype');
-  font-weight: 300; /* Lighter weight */
-  font-style: normal;
+font-family: 'Chronicle Display';
+src: url('/fonts/ChronicleDisplay-Light.woff2') format('woff2'),
+     url('/fonts/ChronicleDisplay-Light.woff') format('woff'),
+     url('/fonts/ChronicleDisplay-Light.ttf') format('truetype');
+font-weight: 300; /* Lighter weight */
+font-style: normal;
 }
 
 
 .timeline-heading {
-  font-size: 38px;
-  font-weight: 300;
-  color: #F2F2F2;
-  margin-top: 15px;
-  margin-bottom: 0.3rem;
-  line-height: 1.2;
-  font-family: 'Chronicle Display', serif;
+font-size: 38px;
+font-weight: 300;
+color: #F2F2F2;
+margin-top: 15px;
+margin-bottom: 0.3rem;
+line-height: 1.2;
+font-family: 'Chronicle Display', serif;
 }
 
 .timeline-description {
-  font-size: 14px;
-  color: #B3B3B3;
-  margin-bottom: 0.1rem;
-  line-height: 1.3;
-  font-weight: 400;
-  font-family: 'Arial', 'Helvetica', sans-serif;
+font-size: 14px;
+color: #B3B3B3;
+margin-bottom: 0.1rem;
+line-height: 1.3;
+font-weight: 400;
+font-family: 'Arial', 'Helvetica', sans-serif;
 }
 .first-background-year {
-  position: absolute;
-  top: 17%;
-  left: 10%;
-  z-index: 1;
-  pointer-events: none; /* Prevents interaction */
-  font-family: 'Gilroy', sans-serif;
-  font-weight: bold;
-    font-size: 7rem; /* Adjust according to Figma */
-    color: rgba(255, 255, 255, 0.1); /* Ensure matching color */
-    letter-spacing: -0.02em; /* Adjust spacing to match Figma */
+position: absolute;
+top: 17%;
+left: 10%;
+z-index: 1;
+pointer-events: none; /* Prevents interaction */
+font-family: 'Gilroy', sans-serif;
+font-weight: bold;
+  font-size: 7rem; /* Adjust according to Figma */
+  color: rgba(255, 255, 255, 0.1); /* Ensure matching color */
+  letter-spacing: -0.02em; /* Adjust spacing to match Figma */
 }
 
 /* Image Section */
 .timeline-image {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
+flex: 1;
+display: flex;
+justify-content: flex-end;
 }
 
 .timeline-image img {
-  width: 95%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+width: 95%;
+max-width: 400px;
+height: auto;
+border-radius: 8px;
+object-fit: cover;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .read-more {
-  font-size: 1rem;
-  color: #FBD784;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 1rem;
+font-size: 1rem;
+color: #FBD784;
+text-decoration: none;
+font-weight: bold;
+display: inline-block;
+margin-top: 1rem;
 }
 
 .read-more:hover {
-  text-decoration: underline;
+text-decoration: underline;
 }
 
 
 .second-timeline-year{
-  font-size: 9px;
-    color: #B3B3B3;
-    margin-bottom: 0;
-    font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-top: 62px;
-    padding-left: 8px;
- 
+font-size: 9px;
+  color: #B3B3B3;
+  margin-bottom: 0;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-top: 62px;
+  padding-left: 8px;
+
 
 }
 /* second timeline image-with text */
 
 .second-timeline-title {
-  color: #FBD784;
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+color: #FBD784;
+font-size: 1rem;
+font-weight: bold;
+letter-spacing: 1px;
 }
 
 
 .second-timeline-section, .fourth-timeline-section{
-  opacity: 0;
-  display: none;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease-out 0.3s, transform 0.4s ease-out 0.3s;
- color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  z-index: 10;
-  position: relative
+opacity: 0;
+display: none;
+transform: translateY(20px);
+transition: opacity 0.4s ease-out 0.3s, transform 0.4s ease-out 0.3s;
+color: #fff;
+padding: 20px;
+border-radius: 8px;
+z-index: 10;
+position: relative
 }
 
 /* Fade-In Active State */
 .second-timeline-section.active {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    margin: 0 auto;
-    width: 60%;
-  position: absolute;
-  top: 245%;
-  left: 1%;
+opacity: 1;
+transform: translateY(0);
+visibility: visible;
+display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin: 0 auto;
+  width: 60%;
+position: absolute;
+top: 245%;
+left: 1%;
 }
 
 /* Active State */
 .fourth-timeline-section.active {
 
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    margin: 0 auto;
-    width: 60%;
-  position: absolute;
-  top: 411%;
-  left: 1%;
+opacity: 1;
+transform: translateY(0);
+visibility: visible;
+display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin: 0 auto;
+  width: 60%;
+position: absolute;
+top: 407%;
+left: 1%;
 }
 
 .second-timeline-section .timeline-content,
 .fourth-timeline-section .timeline-content {
 
 display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 94px;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* background-color: #0C1418; */
+align-items: center;
+justify-content: space-between;
+gap: 94px;
+max-width: 1200px;
+margin: 0 auto;
+/* background-color: #0C1418; */
 }
 
 .second-timeline-section .timeline-text,
@@ -748,77 +523,454 @@ padding-left: 45px;
 }
 
 .second-background-year {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  z-index: 1;
-  pointer-events: none; /* Prevents interaction */
-  font-family: 'Gilroy', sans-serif;
-  font-weight: bold;
-    font-size: 7rem; /* Adjust according to Figma */
-    color: rgba(255, 255, 255, 0.1); /* Ensure matching color */
-    letter-spacing: -0.02em; /* Adjust spacing to match Figma */
+position: absolute;
+top: 5%;
+left: 50%;
+z-index: 1;
+pointer-events: none; /* Prevents interaction */
+font-family: 'Gilroy', sans-serif;
+font-weight: bold;
+  font-size: 7rem; /* Adjust according to Figma */
+  color: rgba(255, 255, 255, 0.1); /* Ensure matching color */
+  letter-spacing: -0.02em; /* Adjust spacing to match Figma */
 }
 
 .second-timeline-section .second-timeline-title,
 .fourth-timeline-section .second-timeline-title {
-  position: relative;
-  display: inline-block; /* Ensures the title has proper positioning */
-  padding-left: 20px;  /* Adds space between the line and the text */
+position: relative;
+display: inline-block; /* Ensures the title has proper positioning */
+padding-left: 20px;  /* Adds space between the line and the text */
 }
 
 .second-timeline-section .second-timeline-title::before
 .fourth-timeline-section .second-timeline-title::before {
-    content: '';
-    position: absolute;
-    top: 50%;  /* Vertically center the line relative to the text */
-    right: 95%;   /* Position the line at the left of the text */
-    width: 25%; /* Make the line take up 50% of the width */
-    height: 1px; /* Thickness of the line */
-    background-color: #FBD784;  /* Yellow color */
-    /* z-index: -1;  Ensure the line stays behind the text */
-    transform: translateY(-50%); /* Vertically center the line */
+  content: '';
+  position: absolute;
+  top: 50%;  /* Vertically center the line relative to the text */
+  right: 95%;   /* Position the line at the left of the text */
+  width: 25%; /* Make the line take up 50% of the width */
+  height: 1px; /* Thickness of the line */
+  background-color: #FBD784;  /* Yellow color */
+  /* z-index: -1;  Ensure the line stays behind the text */
+  transform: translateY(-50%); /* Vertically center the line */
 }
 
 .second-timeline-section .second-timeline-title::before,
 .fourth-timeline-section .second-timeline-title::before {
-    content: '';
-    position: absolute;
-    top: 50%;  /* Vertically center the line relative to the text */
-    right: 95%;   /* Position the line at the left of the text */
-    width: 25%; /* Make the line take up 50% of the width */
-    height: 1px; /* Thickness of the line */
-    background-color: #FBD784;  /* Yellow color */
-    /* z-index: -1;  Ensure the line stays behind the text */
-    transform: translateY(-50%); /* Vertically center the line */
+  content: '';
+  position: absolute;
+  top: 50%;  /* Vertically center the line relative to the text */
+  right: 95%;   /* Position the line at the left of the text */
+  width: 25%; /* Make the line take up 50% of the width */
+  height: 1px; /* Thickness of the line */
+  background-color: #FBD784;  /* Yellow color */
+  /* z-index: -1;  Ensure the line stays behind the text */
+  transform: translateY(-50%); /* Vertically center the line */
 }
 
 
 /* Image Section */
 .second-timeline-image {
-  flex: 0.8;
-  display: flex;
-  justify-content: flex-end;
-  text-align: left;
+flex: 0.8;
+display: flex;
+justify-content: flex-end;
+text-align: left;
 }
 
 .duplicate-timeline-container{
-  position: relative;
-  display: flex;
-  overflow: hidden; /* Prevent any overflow from breaking the layout */
-  /* width: 100%; */
-  /* z-index: -5; */
-  margin-top: -5%;
-  padding-left: 25px;
-   /* Gradient blending */
-   background: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 0), /* Transparent to blend with above container */
-        /* rgba(42, 127, 170, 0.8), Mid-gradient color */
-        rgba(42, 127, 170, 0) /* Transparent to blend with below container */
-    );
+position: relative;
+display: flex;
+overflow: hidden; /* Prevent any overflow from breaking the layout */
+/* width: 100%; */
+/* z-index: -5; */
+margin-top: -5%;
+padding-left: 25px;
+ /* Gradient blending */
+ background: linear-gradient(
+      to bottom, 
+      rgba(0, 0, 0, 0), /* Transparent to blend with above container */
+      /* rgba(42, 127, 170, 0.8), Mid-gradient color */
+      rgba(42, 127, 170, 0) /* Transparent to blend with below container */
+  );
 
 }
+
+
+/* Gradient Separator for Blending */
+.gradient-separator {
+height: 140px; /* Adjust height for smoother blending */
+width: 100%;
+background: linear-gradient(
+  to bottom,
+  rgba(46, 35, 36, 1) -261%, /* Matches the first container's background */
+  rgba(11, 29, 38, 1) /* Matches the second container's background */
+);
+}
+/* Second Container (Slider) */
+.partagali-slider-container {
+height: 100vh;
+width: 100%;
+overflow: hidden;
+background: #0B1D26; /* Matches the gradient's ending color */
+position: relative;
+}
+
+  .partagali-horizontal-slider {
+    display: flex;
+    height: 100vh;
+    width: max-content;
+    transform: translateX(0);
+  }
+
+  .partagali-slide {
+    min-width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+
+
+
+  .hero-content-wrapper{
+      padding: 6rem 8rem;
+      margin: 0; /* Remove extra margin if any */
+      min-height: 100vh;
+      min-width: 100vw; /* Ensures the hero section spans the full width of the viewport */
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box; /* Includes padding in width/height calculations */
+  }
+  
+  .section-subtitle {
+      color: #D9D9D9;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      font-weight: 500;
+  }
+  
+  .section-main-title {
+      font-size: 4rem;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.2;
+      max-width: 500px;
+  }
+  
+  .section-slider-description{
+      color: #D9D9D9;
+      max-width: 400px;
+      line-height: 1.6;
+      margin-top: 2rem;
+      font-size: 1rem;
+  }
+  
+  .explore-container {
+      position: absolute;
+      right: 8rem;
+      top: 50%;
+      display: flex;
+      align-items: center;
+  }
+  
+  .explore-button {
+      width: 120px;
+      height: 120px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  }
+  
+  .explore-text {
+      color: white;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+  }
+  
+  .hero-slier-timeline {
+      display: flex;
+      align-items: center;
+      margin-left: 2rem;
+  }
+  
+  .timeline-dot {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      margin: 0 0.5rem;
+  }
+  
+  .timeline-dot.active {
+      background-color: white;
+  }
+  
+  .timeline-line {
+      width: 40px;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .explore-circle:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+  }
+  
+  .partagali-scroll-button {
+  position: absolute; /* Position relative to the parent container */
+  bottom: -50px; /* Distance from the bottom of the slider */
+  left: 23%; /* Distance from the right side of the slider */
+  background-color: #ffffff; /* Change to match your design */
+  color: #000000; /* Change to match your design */
+  border: none;
+  border-radius: 50%; /* Optional, for circular button */
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10; /* Ensure it stays above other elements */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    animation: pulse 2s infinite;}
+
+.partagali-scroll-button:hover {
+  background-color: #b2b2b2; /* Hover effect */
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.partagali-slider-container {
+  position: relative; /* Required to position the button within this container */
+}
+
+
+
+  .slider-horizontal-container {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      width: max-content;
+      transform: translateX(0);
+  }
+ 
+
+.second-slider{
+    width: 100vw;
+    height: 100vh;      
+    background-image: url('images/Rectangle 6.png');
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .second-slider h1{
+    font-size: 2.8rem;
+    width: 35%;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    line-height: 3.8rem;
+    margin: 0;
+
+  }
+  .second-slider p{
+    font-size: 2.3rem;
+  width: 40%;
+  text-transform: uppercase;
+  font-weight: 200;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 4px;
+  }
+
+   
+  .third-slider {
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0B1D26;
+    gap: 10%;
+    /* padding-left: 2%; */
+  }
+
+  .third-slider-year{
+    font-size: 7rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .third-slider-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 500px;
+  }
+ 
+  .third-slider-content img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 5px;
+  }
+
+  .third-slider-caption {
+    margin-top: 4rem;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #B3B3B3;
+    width: 60%;
+    text-align: left;
+    padding-left: 40px;
+  }
+
+
+/* Fifth Slider Styling */
+.fourth-slider {
+  width: 100vw; /* Match other slides */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:65px;
+  background-color: #0B1D26; /* Adjust background as needed */
+  color: white;
+  text-align: center;
+}
+/* Image and Video Container */
+.vertical-video-container {
+  flex: 1;
+  max-width: 330px; /* Adjust size as needed */
+}
+
+/* Video with Vertical Aspect Ratio */
+.vertical-video-container video {
+  width: 330px; /* Set width to auto */
+  height: 500px; /* Define the height */
+  aspect-ratio: 9 / 16; /* Ensure a vertical aspect ratio */
+  object-fit: cover; /* Maintain cropping and scaling */
+  border-radius: 5px;
+}
+/* Text Container */
+.fourth-slider-text-container {
+  flex: 2;
+  max-width: 600px;
+  text-align: left;
+  line-height: 1.4;
+  font-size: 1.1rem;
+  }
+  .fourth-slider-text-container p {
+    padding-left: 40px;
+    color: #B3B3B3; 
+    width: 55%;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+ }
+ .fourth-slider-gif-container-2 img{
+width: 65%; /* Adjust the width to make the image smaller */
+  height: 35vh;
+  /* aspect-ratio: 16 / 9; Horizontal aspect ratio */
+  object-fit: cover;
+}
+.fifth-slider{
+    width: 100vw;
+    height: 100vh;      
+    background-image: url('slider assets/Frame 4.gif');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size:cover ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .fifth-slider h1{
+    font-size: 2.8rem;
+    width: 35%;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    line-height: 3.8rem;
+    margin: 0;
+
+  }
+  .fifth-slider p{
+    font-size: 2.3rem;
+  width: 40%;
+  text-transform: uppercase;
+  font-weight: 200;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 4px;
+  }
+
+  
+  .sixth-slider {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-color: #FCFCFC;
+    gap: 20%;
+  }
+
+  .sixth-slider-year{
+    font-size: 7rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    text-align: center;
+    width: 100%;
+    padding-right: 10rem;
+  }
+
+  .sixth-slider-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 65%;
+  }
+ 
+  .sixth-slider-content img {
+    width:60%;
+    aspect-ratio: 3 / 2;
+  }
+
+  .sixth-slider-caption {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #4D4D4D;
+    width: 60%;
+    text-align: left;
+    padding-left: 50px;
+    margin-top: 3rem;
+
+  }
+
+
+
   </style>
 </head>
 <body>
@@ -1055,7 +1207,6 @@ padding-left: 45px;
   </div>
 </section>
 
-<!-- Horizontal Slider -->
 <div class="partagali-slider-container">
   <div class="partagali-horizontal-slider">
 
@@ -1063,35 +1214,89 @@ padding-left: 45px;
     <div class="slider-horizontal-container">
 
       <div class="hero-content-wrapper">
-        <div class="hero-info-section">
-            <p class="section-subtitle">CHARTING THE SHRI SAMSTHAN GOKARN<br/>JEEVOTTAM MATH STORY</p>
-            <h1 class="section-main-title">From Harmony to Heritage...</h1>
-            <p class="section-slider-description">
-                Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker.
-            </p>
-        </div>
+          <div class="hero-info-section">
+              <p class="section-subtitle">CHARTING THE SHRI SAMSTHAN GOKARN<br/>JEEVOTTAM MATH STORY</p>
+              <h1 class="section-main-title">From Harmony to Heritage...</h1>
+              <p class="section-slider-description">
+                  Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker.
+              </p>
+          </div>
         
         <div class="explore-container">
-            <div class="explore-button">
-                <span class="explore-label">Explore ></span>
+              <div class="explore-button">
+                  <span class="explore-label">Explore ></span>
+              </div>
+              <div class="hero-slier-timeline">
+                <div class="timeline-dot active"></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-dot"></div>
             </div>
-            <div class="hero-slier-timeline">
-              <div class="timeline-dot active"></div>
-              <div class="timeline-line"></div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-              <div class="timeline-dot"></div>
-          </div>
         </div>
       </div>
 
-    <div class="partagali-slide">Slide 1</div>
-    <div class="partagali-slide">Slide 2</div>
-    <div class="partagali-slide">Slide 3</div>
-    <div class="partagali-slide">Slide 4</div>
-    <div class="partagali-slide">Slide 5</div>
+      <div class="second-slider">
+      
+          <h1>CHARTING <br>
+            Shri Samsthan
+             Gokarn Partagali</h1>
+             <p>Jeevottam Math</p>
+        </div>
+        
+      
+
+        <div class="third-slider">
+          <div class="third-slider-year">1518</div>
+          <div class="third-slider-content">
+             <img src="slider assets/FRAME 1.gif" alt="Depiction of Spirituality" /> 
+            <p class="third-slider-caption">Determining what level of hiker you are can be an important tool when planning future hikes.</p>
+          </div>
+        </div>
+
+        
+                  <!-- Fifth Slider -->
+          <div class="fourth-slider">
+              <div class="vertical-video-container">
+                  <video src="slider assets/Frame 3.mp4" autoplay muted loop></video>
+
+              </div>
+              <!-- Text Container -->
+              <div class="fourth-slider-text-container">
+                  <p>
+                      Determining what level of hiker you are can be an important tool when planning future hikes.
+                      This hiking level guide will help you plan hikes according to different hike ratings set by
+                      various websites like All Trails and Modern Hiker.
+                  </p>
+                  <!-- Image Container -->
+                  <div class="fourth-slider-gif-container-2">
+                      <img src="slider assets/Frame 2.gif" alt="Image 2">
+                  </div>
+               </div>
+          </div>
+
+               <div class="fifth-slider">
+      
+                  <h1>CHARTING <br>
+                    Shri Samsthan
+                     Gokarn Partagali</h1>
+                     <p>Jeevottam Math</p>
+                </div>
+
+
+                <div class="sixth-slider">
+                  <div class="sixth-slider-year">1518</div>
+                  <div class="sixth-slider-content">
+                     <img src="slider assets/Frame 5.gif" alt="Depiction of Spirituality" /> 
+                    <p class="sixth-slider-caption">Determining what level of hiker you are can be an important tool when
+                      planning future hikes. This hiking level guide will help you plan hikes according to different hike 
+                      ratings set by various websites like All Trails and Modern Hiker. </p>
+                  </div>
+                </div>
+      
   </div>
 </div>
+
 
 
 <!-- Floating Scroll Down Button -->
@@ -1239,41 +1444,31 @@ padding-left: 45px;
 
 
 <script>
-  gsap.registerPlugin(ScrollTrigger);
+  
+gsap.registerPlugin(ScrollTrigger);
 
-  // Horizontal Slider
-  const slider = document.querySelector('.partagali-horizontal-slider');
-  const slides = document.querySelectorAll('.partagali-slide');
-  const totalWidth = slides.length * window.innerWidth;
+// Horizontal Slider Configuration
+const slider = document.querySelector('.slider-horizontal-container');
+const slides = document.querySelectorAll('.slider-horizontal-container > div'); // Target slides
+const slideWidth = window.innerWidth; // Use viewport width
+const totalWidth = slides.length * slideWidth; // Total scrollable width
 
-  gsap.to(slider, {
-    x: () => -(totalWidth - window.innerWidth), // Move horizontally based on total width
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.partagali-slider-container',
-      start: 'top top',
-      end: () => `+=${totalWidth}`,
-      scrub: 1, // Smoothness of the scroll
-      pin: true, // Pins the container to enable horizontal scrolling
-      anticipatePin: 1,
-    },
-  });
+// Horizontal Scroll Animation
+gsap.to(slider, {
+  x: () => -(totalWidth - slideWidth), // Horizontal translation
+  ease: 'none', // Linear scrolling
+  scrollTrigger: {
+    trigger: '.partagali-slider-container', // Trigger the container
+    start: 'top top', // Start when container reaches top of viewport
+    end: () => `+=${totalWidth}`, // Total scrollable area
+    scrub: 1, // Smooth scrolling
+    pin: true, // Pins the container during scroll
+    anticipatePin: 1, // Smooth pinning
+  },
+});
 
-  // Parallax Effect
-  const parallaxItems = document.querySelectorAll('.partagali-parallax');
-  parallaxItems.forEach((item) => {
-    const speed = item.dataset.speed || 0.5; // Customizable speed
-    gsap.to(item, {
-      y: () => `-${window.innerHeight * speed}`, // Move vertically at a slower speed
-      ease: 'none',
-      scrollTrigger: {
-        trigger: item.closest('.partagali-section'),
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-  });
+
+ 
 
   // Floating Button Scroll Behavior
   function scrollToNext() {
@@ -1287,6 +1482,8 @@ padding-left: 45px;
   window.addEventListener('resize', () => {
     ScrollTrigger.refresh();
   });
+
+
 </script>
 </body>
 </html>
