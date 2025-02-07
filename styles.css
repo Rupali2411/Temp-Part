@@ -310,7 +310,7 @@ max-width: 1400px;
 
 .grey-path {
   stroke: rgba(212, 210, 210, 0.875);
-  stroke-width: 3;
+  stroke-width: 6;
   fill: none;
   
 }
@@ -323,7 +323,7 @@ max-width: 1400px;
 
 .white-path {
   stroke: rgb(255, 255, 255);
-  stroke-width: 3;
+  stroke-width: 6;
   fill: none;
 }
 
