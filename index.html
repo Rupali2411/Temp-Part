@@ -704,7 +704,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Initialize variables
 const slider = document.querySelector(".slider-horizontal-container");
-const slides = document.querySelectorAll(".slider-horizontal-container > div");
+const slides = Array.from(document.querySelectorAll(".slider-horizontal-container > div"));
 const slideCount = slides.length;
 let slideWidth = window.innerWidth;
 let currentIndex = 0;
@@ -732,92 +732,55 @@ function updateSlideCounter() {
   slideCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(slideCount).padStart(2, "0")}`;
 }
 
-// Improved slide transition function
+// Slide transition function
 function goToSlide(index) {
   if (!isAnimating && index >= 0 && index < slideCount && index !== currentIndex) {
     isAnimating = true;
-    
-    // Kill any existing tweens
-    gsap.killTweensOf(slider);
-    
     gsap.to(slider, {
       x: -index * slideWidth,
-      duration: 1,
+      duration: 0.8,
       ease: "power2.out",
+      force3D: true,
       onComplete: () => {
         currentIndex = index;
         isAnimating = false;
         updateSlideCounter();
-      }
+      },
     });
   }
 }
 
-// Main ScrollTrigger setup
+// ScrollTrigger setup
 const sliderTrigger = ScrollTrigger.create({
   trigger: ".partagali-slider-container",
   pin: true,
   start: "top top",
   end: () => `+=${slideWidth * (slideCount - 1)}`,
-  scrub: 1,
-  snap: {
-    snapTo: 1 / (slideCount - 1),
-    duration: { min: 0.2, max: 0.3 },
-    delay: 0,
-    ease: "power1.inOut"
-  },
+  scrub: 0.5,
   onUpdate: (self) => {
     if (!isAnimating) {
-      const progress = self.progress;
-      const targetIndex = Math.round(progress * (slideCount - 1));
-      if (targetIndex !== currentIndex) {
-        currentIndex = targetIndex;
-        updateSlideCounter();
-        gsap.to(slider, {
-          x: -currentIndex * slideWidth,
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      }
-    }
-  },
-  onEnter: () => {
-    slideCounter.style.opacity = "1";
-  },
-  onLeave: () => {
-    slideCounter.style.opacity = "0";
-  },
-  onEnterBack: () => {
-    slideCounter.style.opacity = "1";
-  },
-  onLeaveBack: () => {
-    slideCounter.style.opacity = "0";
-  }
-});
-
-// Improved wheel handler
-let wheelTimeout;
-const handleWheel = (e) => {
-  if (!isAnimating && sliderTrigger.isActive) {
-    clearTimeout(wheelTimeout);
-    wheelTimeout = setTimeout(() => {
-      const direction = e.deltaY > 0 ? 1 : -1;
+      const direction = self.direction > 0 ? 1 : -1;
       const targetIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
       if (targetIndex !== currentIndex) {
         goToSlide(targetIndex);
       }
-    }, 50);
+    }
+  },
+});
+
+// Wheel scroll handling
+document.addEventListener("wheel", (e) => {
+  if (!isAnimating && sliderTrigger.isActive) {
+    let direction = e.deltaY > 0 ? 1 : -1;
+    const targetIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
+    if (targetIndex !== currentIndex) {
+      goToSlide(targetIndex);
+    }
   }
-};
+}, { passive: true });
 
-// Add wheel event listener with proper conditions
-document.addEventListener("wheel", handleWheel, { passive: true });
-
-// Improved touch handling
-let touchStartX;
-let touchStartY;
-let touchThreshold = 50; // Minimum swipe distance
-
+// Touch swipe handling
+let touchStartX = 0, touchStartY = 0;
 document.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
   touchStartY = e.touches[0].clientY;
@@ -829,9 +792,8 @@ document.addEventListener("touchend", (e) => {
     const touchEndY = e.changedTouches[0].clientY;
     const deltaX = touchStartX - touchEndX;
     const deltaY = touchStartY - touchEndY;
-    
-    // Only handle horizontal swipes when the horizontal movement is greater
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > touchThreshold) {
+
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
       const direction = deltaX > 0 ? 1 : -1;
       const targetIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
       if (targetIndex !== currentIndex) {
@@ -841,22 +803,12 @@ document.addEventListener("touchend", (e) => {
   }
 }, { passive: true });
 
-// Improved resize handler
-let resizeTimeout;
+// Resize event handling
 window.addEventListener("resize", () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    slideWidth = window.innerWidth;
-    slider.style.width = `${slideWidth * slideCount}px`;
-    
-    // Update current slide position
-    gsap.set(slider, { 
-      x: -currentIndex * slideWidth,
-    });
-    
-    // Refresh ScrollTrigger
-    ScrollTrigger.refresh();
-  }, 100);
+  slideWidth = window.innerWidth;
+  slider.style.width = `${slideWidth * slideCount}px`;
+  gsap.set(slider, { x: -currentIndex * slideWidth });
+  ScrollTrigger.refresh();
 });
 
 // Initialize
