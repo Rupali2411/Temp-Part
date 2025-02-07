@@ -697,16 +697,16 @@
 </script>
     
 
-<!-- Slider-->
-
+<!-- slider -->
+ 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
 // Initialize variables
-const slider = document.querySelector('.slider-horizontal-container');
-const slides = document.querySelectorAll('.slider-horizontal-container > div');
+const slider = document.querySelector(".slider-horizontal-container");
+const slides = document.querySelectorAll(".slider-horizontal-container > div");
 const slideCount = slides.length;
-const slideWidth = window.innerWidth;
+let slideWidth = window.innerWidth;
 let currentIndex = 0;
 let isAnimating = false;
 
@@ -714,7 +714,7 @@ let isAnimating = false;
 slider.style.width = `${slideWidth * slideCount}px`;
 
 // Create slide counter
-const slideCounter = document.createElement('div');
+const slideCounter = document.createElement("div");
 slideCounter.style.cssText = `
   position: fixed;
   bottom: 30px;
@@ -724,145 +724,144 @@ slideCounter.style.cssText = `
   color: #b3b0b0;
   font-weight: bold;
   z-index: 1000;
+  transition: opacity 0.3s ease;
 `;
-slideCounter.textContent = `01 / ${String(slideCount).padStart(2, '0')}`;
 document.body.appendChild(slideCounter);
 
 function updateSlideCounter() {
-  slideCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(slideCount).padStart(2, '0')}`;
+  slideCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(slideCount).padStart(2, "0")}`;
 }
 
+// Improved slide transition function
 function goToSlide(index) {
-  if (!isAnimating && index !== currentIndex) {
+  if (!isAnimating && index >= 0 && index < slideCount && index !== currentIndex) {
     isAnimating = true;
+    
+    // Kill any existing tweens
+    gsap.killTweensOf(slider);
+    
     gsap.to(slider, {
       x: -index * slideWidth,
       duration: 1,
-      ease: 'power2.inOut',
+      ease: "power2.out",
       onComplete: () => {
         currentIndex = index;
         isAnimating = false;
         updateSlideCounter();
-      },
+      }
     });
   }
 }
 
-// Create horizontal scroll timeline
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.partagali-slider-container',
-    pin: true,
-    pinSpacing: true,
-    start: 'top top',
-    end: () => `+=${slideWidth * (slideCount - 0.5)}`, // Slightly reduce end point
-    scrub: 1,
-    anticipatePin: 1,
-    onUpdate: (self) => {
-      if (!isAnimating) {
-        const progress = self.progress;
-        const targetIndex = Math.floor(progress * (slideCount - 1));
-        if (targetIndex !== currentIndex) {
-          goToSlide(targetIndex);
-        }
+// Main ScrollTrigger setup
+const sliderTrigger = ScrollTrigger.create({
+  trigger: ".partagali-slider-container",
+  pin: true,
+  start: "top top",
+  end: () => `+=${slideWidth * (slideCount - 1)}`,
+  scrub: 1,
+  snap: {
+    snapTo: 1 / (slideCount - 1),
+    duration: { min: 0.2, max: 0.3 },
+    delay: 0,
+    ease: "power1.inOut"
+  },
+  onUpdate: (self) => {
+    if (!isAnimating) {
+      const progress = self.progress;
+      const targetIndex = Math.round(progress * (slideCount - 1));
+      if (targetIndex !== currentIndex) {
+        currentIndex = targetIndex;
+        updateSlideCounter();
+        gsap.to(slider, {
+          x: -currentIndex * slideWidth,
+          duration: 0.5,
+          ease: "power2.out"
+        });
       }
-    },
-    onLeave: () => {
-      // When leaving the slider section, show the slide counter
-      slideCounter.style.opacity = '0';
-      document.body.style.overflow = 'auto';
-    },
-    onEnterBack: () => {
-      // When entering the slider section again
-      slideCounter.style.opacity = '1';
-      document.body.style.overflow = 'auto';
     }
+  },
+  onEnter: () => {
+    slideCounter.style.opacity = "1";
+  },
+  onLeave: () => {
+    slideCounter.style.opacity = "0";
+  },
+  onEnterBack: () => {
+    slideCounter.style.opacity = "1";
+  },
+  onLeaveBack: () => {
+    slideCounter.style.opacity = "0";
   }
 });
 
-// Handle window resize
-window.addEventListener('resize', () => {
-  const newSlideWidth = window.innerWidth;
-  slider.style.width = `${newSlideWidth * slideCount}px`;
-  gsap.set(slider, { x: -currentIndex * newSlideWidth });
-  ScrollTrigger.refresh();
-});
-
-// Handle wheel events with debounce
+// Improved wheel handler
 let wheelTimeout;
 const handleWheel = (e) => {
-  if (!isAnimating) {
+  if (!isAnimating && sliderTrigger.isActive) {
     clearTimeout(wheelTimeout);
     wheelTimeout = setTimeout(() => {
       const direction = e.deltaY > 0 ? 1 : -1;
-      const nextIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
-      if (nextIndex !== currentIndex) {
-        goToSlide(nextIndex);
+      const targetIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
+      if (targetIndex !== currentIndex) {
+        goToSlide(targetIndex);
       }
     }, 50);
   }
 };
 
-// Add wheel event listener only when in slider section
-ScrollTrigger.create({
-  trigger: '.partagali-slider-container',
-  start: 'top top',
-  end: () => `+=${slideWidth * (slideCount - 0.5)}`,
-  onEnter: () => {
-    document.addEventListener('wheel', handleWheel, { passive: true });
-  },
-  onLeave: () => {
-    document.removeEventListener('wheel', handleWheel);
-  },
-  onEnterBack: () => {
-    document.addEventListener('wheel', handleWheel, { passive: true });
-  },
-  onLeaveBack: () => {
-    document.removeEventListener('wheel', handleWheel);
-  }
-});
+// Add wheel event listener with proper conditions
+document.addEventListener("wheel", handleWheel, { passive: true });
 
-// Handle touch events
-let touchStartY;
+// Improved touch handling
 let touchStartX;
+let touchStartY;
+let touchThreshold = 50; // Minimum swipe distance
 
-document.addEventListener('touchstart', (e) => {
-  touchStartY = e.touches[0].clientY;
+document.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
 }, { passive: true });
 
-document.addEventListener('touchend', (e) => {
-  if (!isAnimating) {
-    const touchEndY = e.changedTouches[0].clientY;
+document.addEventListener("touchend", (e) => {
+  if (!isAnimating && sliderTrigger.isActive) {
     const touchEndX = e.changedTouches[0].clientX;
-    const deltaY = touchStartY - touchEndY;
+    const touchEndY = e.changedTouches[0].clientY;
     const deltaX = touchStartX - touchEndX;
+    const deltaY = touchStartY - touchEndY;
     
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-      const direction = deltaY > 0 ? 1 : -1;
-      const nextIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
-      if (nextIndex !== currentIndex) {
-        goToSlide(nextIndex);
+    // Only handle horizontal swipes when the horizontal movement is greater
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > touchThreshold) {
+      const direction = deltaX > 0 ? 1 : -1;
+      const targetIndex = Math.max(0, Math.min(slideCount - 1, currentIndex + direction));
+      if (targetIndex !== currentIndex) {
+        goToSlide(targetIndex);
       }
     }
   }
 }, { passive: true });
 
-// Add CSS to parent container
-const sliderContainer = document.querySelector('.partagali-slider-container');
-sliderContainer.style.cssText = `
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-`;
-
-// Make sure body scroll is enabled
-document.body.style.overflow = 'auto';
+// Improved resize handler
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    slideWidth = window.innerWidth;
+    slider.style.width = `${slideWidth * slideCount}px`;
+    
+    // Update current slide position
+    gsap.set(slider, { 
+      x: -currentIndex * slideWidth,
+    });
+    
+    // Refresh ScrollTrigger
+    ScrollTrigger.refresh();
+  }, 100);
+});
 
 // Initialize
 updateSlideCounter();
-</script>
 
+  </script>
 </body>
 </html>
